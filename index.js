@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 const bot = new Discord.Client()
 
 //logs in the bot
-const config = require('./config.json')
+//const config = require('./config.json')
 bot.on('ready', () => {
   console.log('Hello World')
 })
@@ -47,4 +47,5 @@ if(command === "clear"){
 
 
 })
-bot.login(config.token);
+//bot.login(config.token);
+bot.login(process.env.BOT_TOKEN)
