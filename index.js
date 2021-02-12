@@ -40,13 +40,20 @@ bot.on('message', async (msg) => {
     msg.channel.send(`Deleted ${args[0]} Total`);
   }
 
-  if (command === "quote") {
+  if (command === "dquote" || command === "rquote") {
     let getQuote = async () => {
-      let result = await fetch
-      //('https://official-joke-api.appspot.com/random_joke')
-      ('https://zenquotes.io/api/today/')
-      let json = await result.json()
-      return json
+      if (command === "dquote") {
+        let result = await fetch
+          ('https://zenquotes.io/api/today/')
+        let json = await result.json()
+        return json
+      }
+      else{
+        let result = await fetch
+          ('https://zenquotes.io/api/random/')
+        let json = await result.json()
+        return json
+      }
     }
 
     let quote = await getQuote()
@@ -55,11 +62,21 @@ bot.on('message', async (msg) => {
     `)
   }
 
-  //clears messages from certain user
-  /*
-  const user = msg.mentions.users.first()
-  const messageList = msg.channel.message.fetch({limit: 100})
-  */
+  if (command === "joke") {
+    let getJoke = async () => {
+      let result = await fetch
+        ('https://official-joke-api.appspot.com/random_joke')
+      let json = await result.json()
+      return json
+    }
+
+    let joke = await getJoke()
+    msg.reply(`
+    ${joke.setup} - 
+    
+    ${joke.punchline}
+    `)
+  }
 
 })
 //bot.login(config.token);
