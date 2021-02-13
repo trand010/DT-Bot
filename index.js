@@ -4,7 +4,7 @@ const fetch = require('node-fetch')
 const bot = new Discord.Client()
 
 //logs in the bot for testing
-//const config = require('./config.json')
+const config = require('./config.json')
 const command = require('./command')
 const firstMessage = require('./first-message')
 const privateMessage = require('./private-message')
