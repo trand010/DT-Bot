@@ -158,6 +158,6 @@ bot.on('ready', async () => {
   })
 })
 
-bot.login(config.token);
+//bot.login(config.token);
 //for heroku
-//bot.login(process.env.BOT_TOKEN)
+bot.login(process.env.BOT_TOKEN)
