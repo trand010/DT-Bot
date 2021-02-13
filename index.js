@@ -15,6 +15,7 @@ bot.on('ready', async () => {
   console.log('Hello World')
 
   //connects to mongo servers when bot goes online
+  /*
   await mongo().then((mongoose) => {
     try {
       //try some code
@@ -25,6 +26,20 @@ bot.on('ready', async () => {
       //this will close the database
     }
   })
+  */
+ const connectToMongoDB = async () => {
+  await mongo().then((mongoose) => {
+    try {
+      //try some code
+      console.log('Connected to mongo')
+    } finally {
+      //will always run
+      mongoose.connection.close()
+      //this will close the database
+    }
+  })
+ }
+ connectToMongoDB()
 
   //welcome bot per server rules using mongo servers
   welcome(bot)
@@ -143,6 +158,6 @@ bot.on('ready', async () => {
   })
 })
 
-//bot.login(config.token);
+bot.login(config.token);
 //for heroku
-bot.login(process.env.BOT_TOKEN)
+//bot.login(process.env.BOT_TOKEN)
