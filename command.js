@@ -1,3 +1,4 @@
+//this is a basic command handler for simple commands
 const { prefix } = require('./config.json')
 
 module.exports = (bot, aliases, callback) => {

@@ -50,7 +50,7 @@ bot.on('ready', async () => {
       }
     }
   }
- readCommands('commands')
+  readCommands('commands')
 
   //welcome bot per server rules using mongo servers
   welcome(bot)
@@ -65,27 +65,27 @@ bot.on('ready', async () => {
   privateMessage(bot, '!help', `Here are the current commands:
  !ping = test if bot is online
  !servers = display amount of members in the current server 
- !cc = clear all messages in a channel (ADMIN)
- !status <input-phrase> = change the status of the bot
+ !cc = clear all messages in a channel (ADMIN ONLY)
+ !status <phrase> = change the status of the bot
  !randomquote = display a random quote
  !dailyquote = display the quote of the day
  !joke = display a random joke 
  !setwelcome = set the welcome message when users join the server
- !simjoin = simulate a user joining the channel
+ !simjoin = simulate a user joining the channel (testing purposes)
  !add <num1> <num2> = add two numbers together
   `)
 })
 
-  //checks for total number of members on the channel
-  command(bot, 'servers', (message) => {
+//checks for total number of members on the channel
+command(bot, 'servers', (message) => {
   bot.guilds.cache.forEach((guild) => {
     message.channel.send(
       `${guild.name} has a total of ${guild.memberCount} members`)
   })
 })
 
-  //changes the bots status
-  command(bot, 'status', message => {
+//changes the bots status
+command(bot, 'status', message => {
   const content = message.content.replace('!status ', '')
   //"!status hello world" -> "hello world"
 
@@ -98,6 +98,6 @@ bot.on('ready', async () => {
 })
 
 //for testing purposes, local hosting
-//bot.login(config.token);
+bot.login(config.token);
 //for heroku, 24/7 bot hosting
-bot.login(process.env.BOT_TOKEN)
+//bot.login(process.env.BOT_TOKEN)

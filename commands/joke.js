@@ -9,7 +9,6 @@ module.exports = {
 
         let getJoke = async () => {
             let result = await fetch
-
                 ('https://official-joke-api.appspot.com/random_joke')
             let json = await result.json()
             return json
