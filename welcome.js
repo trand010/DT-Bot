@@ -64,6 +64,12 @@ module.exports = (bot) => {
                 }
             })
         }
+
+        //if the user has not set a welcome yet, this kicks out of the function
+        //because it cannot run
+        if(!data){
+            return
+        }
         const channelId = data[0]
         const text = data[1]
 
@@ -73,12 +79,12 @@ module.exports = (bot) => {
     }
 
     //to simulate someone joining the server for testing purposes
-    command(bot, 'simjoin', message => {
+    command(bot, 'simjoin', (message) => {
         onJoin(message.member)
     })
 
     //when a user joins the server
-    bot.on('guildMemberAdd', member => {
+    bot.on('guildMemberAdd', (member) => {
         onJoin(member)
     })
 }

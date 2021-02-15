@@ -2,7 +2,8 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client()
 
-//logs in the bot for testing
+//logs in the bot for testingi
+require('events').EventEmitter.defaultMaxListeners = 25;
 const config = require('./config.json')
 const command = require('./command')
 const firstMessage = require('./first-message')
@@ -12,6 +13,7 @@ const welcome = require('./welcome')
 const messageCount = require('./message-counter')
 const path = require('path')
 const fs = require('fs')
+const phrases = require('./viet-daily')
 
 bot.on('ready', async () => {
   console.log('Hello World')
@@ -31,6 +33,8 @@ bot.on('ready', async () => {
     })
   }
   connectToMongoDB()
+
+  //bot.channels.get('807843037425696781').send('aoisdjfaisdjf')
 
   //command handler
   const baseFile = 'command-base.js'
@@ -58,14 +62,18 @@ bot.on('ready', async () => {
   //counts the amount of messages per user
   messageCount(bot)
 
+  //sends a phrase every day at 8 am
+  phrases(bot)
+
   //sends or edits the bots message, very buggy still
   // firstMessage(bot, '807843037425696781', 'hello world', ['❤'])
 
   //dm's the user the current usable commands
-  privateMessage(bot, '!help', `Here are the current commands:
+  privateMessage(bot, '?help', `Here are the current commands:
  !ping = test if bot is online
  !servers = display amount of members in the current server 
  !cc = clear all messages in a channel (ADMIN ONLY)
+ !clear <num> = clear certain number of messages (ADMIN ONLY)
  !status <phrase> = change the status of the bot
  !randomquote = display a random quote
  !dailyquote = display the quote of the day
@@ -73,6 +81,7 @@ bot.on('ready', async () => {
  !setwelcome = set the welcome message when users join the server
  !simjoin = simulate a user joining the channel (testing purposes)
  !add <num1> <num2> = add two numbers together
+ !phrase = random phrase in vietnamese and english
   `)
 })
 
@@ -86,7 +95,7 @@ command(bot, 'servers', (message) => {
 
 //changes the bots status
 command(bot, 'status', message => {
-  const content = message.content.replace('!status ', '')
+  const content = message.content.replace('?status ', '')
   //"!status hello world" -> "hello world"
 
   bot.user.setPresence({
@@ -98,6 +107,6 @@ command(bot, 'status', message => {
 })
 
 //for testing purposes, local hosting
-//bot.login(config.token);
+//bot.login(config.token)
 //for heroku, 24/7 bot hosting
 bot.login(process.env.BOT_TOKEN)

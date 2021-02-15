@@ -19,6 +19,7 @@ module.exports = {
 
             message.channel.send(`Here is a phrase in Vietnamese: ${viet} 
         English Translation: ${english}`)
+
             })
         })
     },
