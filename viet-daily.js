@@ -4,8 +4,7 @@ const vietPhraseSchema = require('./schemas/phrase-schema')
 const cron = require("node-cron")
 const fs = require('fs')
 
-module.exports = (bot) => {
-    //!phrases
+module.exports = async (bot) => {
     const cache = {}
 
     command(bot, 'setphrase', async (message) => {
@@ -79,18 +78,9 @@ module.exports = (bot) => {
         })
     }
 
-    //current not functioning properly
-    /*
-    bot.on('ready', (member) => {
-        console.log("testing")
-        cron.schedule("*./5 * * * * *", function () {
-            perServer(member)
-        })
-    })
-    */
     command(bot, 'rundailyphrase', message => {
-        
-        cron.schedule("*./21 *./8 * * *", function () {
+
+        cron.schedule("0 8 * * *", function () {
             perServer(message.member)
         })
     })
