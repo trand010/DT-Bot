@@ -69,6 +69,7 @@ bot.on('ready', async () => {
   //dm's the user the current usable commands
   privateMessage(bot, '?help', `Here are the current commands:
  ?ping = test if bot is online
+ ?uptime = displays how long the bot has been online
  ?servers = display amount of members in the current server 
  ?cc = clear all messages in a channel (ADMIN ONLY)
  ?clear <num> = clear certain number of messages (ADMIN ONLY)
@@ -81,6 +82,16 @@ bot.on('ready', async () => {
  ?add <num1> <num2> = add two numbers together
  ?phrase = random phrase in vietnamese and english
   `)
+})
+
+//checks the uptime of the bot
+command(bot, 'uptime', (message) =>{
+    let days = Math.floor(bot.uptime / 86400000)
+    let hours = Math.floor(bot.uptime / 3600000) % 24
+    let minutes = Math.floor(bot.uptime / 60000) % 60
+    let seconds = Math.floor(bot.uptime / 1000) % 60
+
+    message.channel.send(`__Uptime:__\n${days}d ${hours}h ${minutes}m ${seconds}s`)
 })
 
 //checks for total number of members on the channel

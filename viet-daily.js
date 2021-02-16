@@ -73,7 +73,7 @@ module.exports = async (bot) => {
                 var lines = data.toString().split('\n')
                 var english = lines[random]
 
-                channel.send(`Phrase of the Day: ${viet}\n\nEnglish Translation: ${english}`)
+                channel.send(`Phrase of the Week: ${viet}\n\nEnglish Translation: ${english}`)
             })
         })
     }

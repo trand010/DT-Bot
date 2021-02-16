@@ -46,7 +46,7 @@ module.exports = (bot, commandOptions) => {
     let {
         commands,
         expectedArgs = '',
-        permissionError = 'You do not have persmission to run this command',
+        permissionError = 'You do not have permission to run this command',
         minArgs = 0,
         maxArgs = null,
         permissions = [],
