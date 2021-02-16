@@ -78,9 +78,12 @@ module.exports = async (bot) => {
         })
     }
 
+    //heroku host has a different timezone
+    //8 am pst will post the message at 12 am meaning there is an 8 hour difference
+    //for the message to be posted at 8 am, it would need to be 16 rather than 8 
     command(bot, 'rundailyphrase', message => {
-
-        cron.schedule("0 8 * * *", function () {
+        message.reply('Phrase command active')
+        cron.schedule("0 17 * * *", function () {
             perServer(message.member)
         })
     })
