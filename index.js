@@ -54,6 +54,13 @@ bot.on('ready', async () => {
   }
   readCommands('commands')
 
+  //sets the status of the bot
+  bot.user.setPresence({
+    activity: {
+      name: '"?help" for help',
+    },
+  })
+
   //welcome bot per server rules using mongo servers
   welcome(bot)
 
