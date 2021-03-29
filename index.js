@@ -83,6 +83,6 @@ bot.on('ready', async () => {
 })
 
 //for testing purposes, local hosting
-bot.login(config.token)
+//bot.login(config.token)
 //for heroku, 24/7 bot hosting
-//bot.login(process.env.BOT_TOKEN)
+bot.login(process.env.BOT_TOKEN)
