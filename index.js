@@ -8,31 +8,16 @@ const config = require('./config.json')
 const command = require('./command')
 const firstMessage = require('./first-message')
 const privateMessage = require('./private-message')
-const mongo = require('./mongo')
 const welcome = require('./welcome')
 const messageCount = require('./message-counter')
 const path = require('path')
-const fs = require('fs')
 const phrases = require('./viet-daily')
+const scheduled = require('./scheduled-msg')
+const fs = require('fs');
+const basicCommands = require('./basic-commands');
 
 bot.on('ready', async () => {
   console.log('Hello World')
-
-  //connects to mongo servers when bot goes online
-  //mongodb will host the data 24/7 for the bot to access
-  const connectToMongoDB = async () => {
-    await mongo().then((mongoose) => {
-      try {
-        //try some code
-        console.log('Connected to mongo')
-      } finally {
-        //will always run
-        mongoose.connection.close()
-        //this will close the database
-      }
-    })
-  }
-  connectToMongoDB()
 
   //advanced command handler
   const baseFile = 'command-base.js'
@@ -61,6 +46,12 @@ bot.on('ready', async () => {
     },
   })
 
+  //has all of the basic commands that still uses the old command handler
+  basicCommands(bot)
+
+  //has the scheduled viet phrase and daily quote
+  scheduled(bot)
+
   //welcome bot per server rules using mongo servers
   welcome(bot)
 
@@ -86,43 +77,12 @@ bot.on('ready', async () => {
  ?joke = display a random joke 
  ?setwelcome = set the welcome message when users join the server
  ?simjoin = simulate a user joining the channel (testing purposes)
- ?add <num1> <num2> = add two numbers together
+ ?plus <num1> <num2> = add two numbers together
  ?phrase = random phrase in vietnamese and english
   `)
 })
 
-//checks the uptime of the bot
-command(bot, 'uptime', (message) =>{
-    let days = Math.floor(bot.uptime / 86400000)
-    let hours = Math.floor(bot.uptime / 3600000) % 24
-    let minutes = Math.floor(bot.uptime / 60000) % 60
-    let seconds = Math.floor(bot.uptime / 1000) % 60
-
-    message.channel.send(`__Uptime:__\n${days}d ${hours}h ${minutes}m ${seconds}s`)
-})
-
-//checks for total number of members on the channel
-command(bot, 'servers', (message) => {
-  bot.guilds.cache.forEach((guild) => {
-    message.channel.send(
-      `${guild.name} has a total of ${guild.memberCount} members`)
-  })
-})
-
-//changes the bots status
-command(bot, 'status', message => {
-  const content = message.content.replace('?status ', '')
-  //"!status hello world" -> "hello world"
-
-  bot.user.setPresence({
-    activity: {
-      name: content,
-      type: 0,
-    },
-  })
-})
-
 //for testing purposes, local hosting
-//bot.login(config.token)
+bot.login(config.token)
 //for heroku, 24/7 bot hosting
-bot.login(process.env.BOT_TOKEN)
+//bot.login(process.env.BOT_TOKEN)
