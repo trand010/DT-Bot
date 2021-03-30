@@ -15,6 +15,7 @@ const phrases = require('./viet-daily')
 const scheduled = require('./scheduled-msg')
 const fs = require('fs');
 const basicCommands = require('./basic-commands');
+const scalingChannels = require('./scale-channels')
 
 bot.on('ready', async () => {
   console.log('Hello World')
@@ -61,7 +62,10 @@ bot.on('ready', async () => {
   //sends a phrase every day at 8 am
   phrases(bot)
 
-  //sends or edits the bots message, very buggy still
+  //scales channel when user joins
+  scalingChannels(bot)
+
+  //sends or edits the bots message, only works for bot only channel
   //firstMessage(bot, '807843037425696781', 'hello world', ['❤'])
 
   //dm's the user the current usable commands

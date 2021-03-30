@@ -115,7 +115,7 @@ module.exports = (bot, commandOptions) => {
                 //Handle the custom command code
                 // ['5', '10']
                 // '5 10'
-                callback(message, arguments, arguments.join(''))
+                callback(message, arguments, arguments.join(''), bot)
                 return
             }
         }
