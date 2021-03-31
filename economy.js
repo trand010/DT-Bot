@@ -28,8 +28,6 @@ module.exports.addCoins = async (guildId, userId, coins) => {
         }
       )
 
-      console.log('RESULT:', result)
-
       coinsCache[`${guildId}-${userId}`] = result.coins
 
       return result.coins
@@ -53,8 +51,6 @@ module.exports.getCoins = async (guildId, userId) => {
         guildId,
         userId,
       })
-
-      console.log('RESULT:', result)
 
       let coins = 0
       if (result) {

@@ -5,7 +5,7 @@ const fs = require('fs')
 module.exports = async (bot) => {
 
     //sends a weekly viet phrase every monday at 8:00 am
-    cron.schedule("0 15 * * 1", function () {
+    cron.schedule("0 15 * * *", function () {
         fs.readFile('vers-viet.txt', function (err, data) {
             if (err) throw err
             var lines = data.toString().split('\n')
@@ -19,7 +19,7 @@ module.exports = async (bot) => {
 
                 //420883043818143744 is the id of the other channel
                 const channel = bot.channels.cache.get('772294720037847090')
-                channel.send(`Phrase of the Week: ${viet}\n\nEnglish Translation: ${english}`)
+                channel.send(`Phrase of the Day: ${viet}\n\nEnglish Translation: ${english}`)
             })
         })
     })
@@ -35,7 +35,8 @@ module.exports = async (bot) => {
 
         const channel = bot.channels.cache.get('772294720037847090')
         let quote = await getQuote()
-        channel.send(`
+        channel.send(`Quote of the Day:
+
     "${quote[0].q}" - ${quote[0].a}
       `)
     })
