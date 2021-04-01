@@ -1,5 +1,5 @@
 //a more advanced command handler designed to deal with multiple arguments/text commands
-const { prefix } = require('../config.json')
+const { prefix } = require('@root/config.json')
 const validatePermissions = (permissions) => {
     const validPermissions = [
         'CREATE_INSTANT_INVITE',

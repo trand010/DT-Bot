@@ -1,5 +1,5 @@
 //this is a basic command handler for simple commands
-const { prefix } = require('./config.json')
+const { prefix } = require('@root/config.json')
 
 module.exports = (bot, aliases, callback) => {
     if (typeof aliases === 'string') {

@@ -12,7 +12,15 @@
   "dependencies": {
     "axios": "^0.21.1",
     "discord.js": "^12.5.1",
+    "module-alias": "^2.2.2",
     "mongoose": "^5.11.16",
     "node-cron": "^2.0.3"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@schemas": "./schemas",
+    "@util": "./util",
+    "@features": "./features/features",
+    "@commands": "./commands/command"
   }
 }

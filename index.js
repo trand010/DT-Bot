@@ -1,18 +1,14 @@
-//const { default: axios } = require('axios')
+require('module-alias/register')
+
 const Discord = require('discord.js')
 const bot = new Discord.Client()
 
 //logs in the bot for testing
-require('events').EventEmitter.defaultMaxListeners = 25;
-const config = require('./config.json')
-const loadCommands = require('./commands/load-commands')
-const firstMessage = require('./first-message')
-const privateMessage = require('./private-message')
-const welcome = require('./welcome')
-const messageCount = require('./message-counter')
-const phrases = require('./viet-daily')
-const scheduled = require('./scheduled-msg')
-const scalingChannels = require('./scale-channels');
+require('events').EventEmitter.defaultMaxListeners = 35;
+const config = require('@root/config.json')
+const privateMessage = require('@util/private-message')
+const loadCommands = require('@root/commands/load-commands')
+const loadFeatures = require('@root/features/load-features')
 
 bot.on('ready', async () => {
   console.log('Hello World')
@@ -26,24 +22,8 @@ bot.on('ready', async () => {
 
   //loads all commands 
   loadCommands(bot)
-
-  //has the scheduled viet phrase and daily quote
-  scheduled(bot)
-
-  //welcome bot per server rules using mongo servers
-  welcome(bot)
-
-  //counts the amount of messages per user
-  messageCount(bot)
-
-  //sends a phrase every day at 8 am
-  phrases(bot)
-
-  //scales channel when user joins
-  scalingChannels(bot)
-
-  //sends or edits the bots message, only works for bot only channel
-  //firstMessage(bot, '807843037425696781', 'hello world', ['❤'])
+  //loads all features
+  loadFeatures(bot)
 
   //dm's the user the current usable commands
   privateMessage(bot, '?help', `Here are the current commands:

@@ -1,6 +1,6 @@
-const mongo = require('./mongo')
-const command = require('./command')
-const vietPhraseSchema = require('./schemas/phrase-schema')
+const mongo = require('@util/mongo')
+const command = require('@util/command')
+const vietPhraseSchema = require('@schemas/phrase-schema')
 const cron = require("node-cron")
 const fs = require('fs')
 

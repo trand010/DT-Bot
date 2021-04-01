@@ -1,5 +1,5 @@
-const mongo = require('./mongo')
-const messageCountSchema = require('./schemas/message-schema')
+const mongo = require('@util/mongo')
+const messageCountSchema = require('@schemas/message-schema')
 
 module.exports = bot => {
     bot.on('message', async (message) => {
