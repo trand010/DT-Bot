@@ -1,4 +1,4 @@
-require('module-alias/register')
+require('module-alias/register') //allows aliases to make finding files easier
 
 const Discord = require('discord.js')
 const bot = new Discord.Client()
@@ -27,7 +27,7 @@ bot.on('ready', async () => {
 
   //dm's the user the current usable commands
   privateMessage(bot, '?help', `Here are the current commands:
- ?ping = test if bot is online
+ ?ping = display ping of the bot
  ?uptime = displays how long the bot has been online
  ?servers = display amount of members in the current server 
  ?cc = clear all messages in a channel (ADMIN ONLY)

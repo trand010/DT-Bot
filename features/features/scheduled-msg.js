@@ -5,6 +5,7 @@ const fs = require('fs')
 module.exports = async (bot) => {
 
     //sends a weekly viet phrase every monday at 8:00 am
+    /*
     cron.schedule("0 15 * * *", function () {
         fs.readFile('vers-viet.txt', function (err, data) {
             if (err) throw err
@@ -23,6 +24,7 @@ module.exports = async (bot) => {
             })
         })
     })
+    */
 
     //sends a daily quote every day at 11:11 am
     cron.schedule("11 18 * * *", async function () {

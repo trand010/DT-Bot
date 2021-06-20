@@ -2,7 +2,7 @@ const channelId = '826331642788184064'
 const check = '✅'
 let registered = false
 
-const registerEvent = (client) => {
+const registerEvent = (bot) => {
   if (registered) {
     return
   }
@@ -11,7 +11,7 @@ const registerEvent = (client) => {
 
   console.log('REGISTERING EVENTS')
 
-  client.on('messageReactionAdd', (reaction, user) => {
+  bot.on('messageReactionAdd', (reaction, user) => {
     if (user.bot) {
       return
     }
@@ -31,7 +31,7 @@ module.exports = {
   callback: (userMessage, arguments, text, client) => {
     const { guild, member } = userMessage
 
-    registerEvent(client)
+    registerEvent(bot)
 
     const channel = guild.channels.cache.get(channelId)
     channel

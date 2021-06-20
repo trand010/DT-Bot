@@ -12,7 +12,7 @@ Are you free this weekend?
 Are you free tomorrow night?
 Let's hang out!
 Let's date!
-Do you want to a watch movie with me?
+Do you want to watch a movie with me?
 You're so beautiful today!
 You're so beautiful tonight!
 You smile very beautifully!
@@ -81,3 +81,4 @@ Staying up late
 I have not slept yet
 I have a dog
 Can I get a taxi?
+You're a good friend
