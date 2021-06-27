@@ -35,7 +35,7 @@ module.exports = async (bot) => {
             return json
         }
 
-        const channel = bot.channels.cache.get('772294720037847090')
+        const channel = bot.channels.cache.get('420883043818143744')
         let quote = await getQuote()
         channel.send(`Quote of the Day:
 
