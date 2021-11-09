@@ -27,7 +27,7 @@ module.exports = async (bot) => {
     */
 
     //sends a daily quote every day at 11:11 am
-    cron.schedule("11 18 * * *", async function () {
+    cron.schedule("11 19 * * *", async function () {
         let getQuote = async () => {
             let result = await fetch
                 ('https://zenquotes.io/api/today/')
